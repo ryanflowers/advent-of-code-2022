@@ -58,6 +58,39 @@ func toShapeValue(shape string) int {
 	}
 }
 
+func toMineResultValue(moveResult string, opponentShape string) int {
+	// Determine mine move value
+	if moveResult == "Draw" {
+		// Draw
+		fmt.Printf("Draw")
+
+		return toShapeValue(opponentShape)
+	} else if moveResult == "Win" {
+		// Win
+		fmt.Printf("Win")
+
+		if opponentShape == "Rock" {
+			return toShapeValue("Paper")
+		} else if opponentShape == "Paper" {
+			return toShapeValue("Scissors")
+		} else {
+			return toShapeValue("Rock")
+		}
+	} else {
+		//Lost
+		fmt.Printf("Lost")
+
+		if opponentShape == "Rock" {
+			return toShapeValue("Scissors")
+		} else if opponentShape == "Paper" {
+			return toShapeValue("Rock")
+		} else {
+			return toShapeValue("Paper")
+		}
+	}
+
+}
+
 func main() {
 
 	var guide, err = getInput()
@@ -89,36 +122,7 @@ func main() {
 		fmt.Println()
 
 		total += resultValue
-
-		// Determine mine move value
-		if moveResult == "Draw" {
-			// Draw
-			fmt.Printf("Draw")
-
-			total += toShapeValue(opponentShape)
-		} else if moveResult == "Win" {
-			// Win
-			fmt.Printf("Win")
-
-			if opponentShape == "Rock" {
-				total += toShapeValue("Paper")
-			} else if opponentShape == "Paper" {
-				total += toShapeValue("Scissors")
-			} else {
-				total += toShapeValue("Rock")
-			}
-		} else {
-			//Lost
-			fmt.Printf("Lost")
-
-			if opponentShape == "Rock" {
-				total += toShapeValue("Scissors")
-			} else if opponentShape == "Paper" {
-				total += toShapeValue("Rock")
-			} else {
-				total += toShapeValue("Paper")
-			}
-		}
+		total += toMineResultValue(moveResult, opponentShape)
 
 		fmt.Println()
 
