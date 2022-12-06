@@ -11,7 +11,7 @@ import (
 
 func getInput() (string, error) {
 
-	content, err := ioutil.ReadFile("day-1.txt")
+	content, err := ioutil.ReadFile("./day 1/input.txt")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -23,8 +23,6 @@ func getInput() (string, error) {
 }
 
 func main() {
-	fmt.Println("Hello, World!")
-
 	var calories, err = getInput()
 	if err != nil {
 		panic(err)
@@ -32,8 +30,6 @@ func main() {
 
 	splitCalories := strings.Split(calories, "\n")
 	// Traverse each elf cals and sum keep track of the largest
-
-	log.Printf(splitCalories[0])
 
 	length := len(splitCalories)
 	maxCalories := make([]int, length)
